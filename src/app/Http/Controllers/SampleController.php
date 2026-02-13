@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\JsonResponse;
 
 class SampleController
 {
-    public function sample(): string
+    public function sample(): JsonResponse
     {
-        return response()->json(
-            'This is a sample controller method.');
-        // return 'This is a sample controller method.';
+        return new JsonResponse([
+            'message' => 'This is a sample controller method.'
+        ]);
     }
 }
