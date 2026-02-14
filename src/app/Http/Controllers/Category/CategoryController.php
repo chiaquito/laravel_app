@@ -18,15 +18,21 @@ class CategoryController
 
     public function categories(): JsonResponse
     {
-        $categories = $this->uc->categories();
-
-        return HttpResponse::toResponse($categories);
+        try{
+            $output = $this->uc->categories();
+            return HttpResponse::toResponse($output);
+        } catch (\Exception $e) {
+            return HttpResponse::toErrorResponse($e->getMessage(), 500);
+        }
     }
 
     public function categoriesByCustomerType(): JsonResponse
     {
-        $categories = $this->uc->categoriesByCustomerType();
-
-        return HttpResponse::toResponse($categories);
+        try{
+            $output = $this->uc->categoriesByCustomerType();
+            return HttpResponse::toResponse($output);
+        } catch (\Exception $e) {
+            return HttpResponse::toErrorResponse($e->getMessage(), 500);
+        }
     }
 }
