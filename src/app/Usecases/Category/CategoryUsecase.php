@@ -3,7 +3,6 @@
 namespace App\Usecases\Category;
 use App\Usecases\Category\Output\CategoriesOutput;
     use App\Usecases\Repositories\CategoryRepositoryInterface;
-use App\Models\Category;
 
 
 class CategoryUsecase
