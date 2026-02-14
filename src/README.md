@@ -12,3 +12,9 @@ sed s/DB_CONNECTION=sqlite/#DB_CONNECTION=sqlite/g src/.env.example > src/.env
 curl localhost:8080/api/sample
 
 ```
+
+```
+# 参考
+curl "localhost:8080/api/categories?customerTypeId=2"
+curl "localhost:8080/api/categories-by-customer-type?customerTypeId=2"
+```
