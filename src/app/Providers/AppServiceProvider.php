@@ -4,9 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Usecases\Category\CategoryUsecase;
-use App\Usecases\Repositories\CategoryRepositoryInterface;
+use App\HttpCli\ExternalService\Postcode;
 use App\Models\Category;
+use App\Usecases\Category\CategoryUsecase;
+use App\Usecases\Postcode\PostcodeUsecase;
+use App\Usecases\Repositories\CategoryRepositoryInterface;
+use App\Usecases\Repositories\PostcodeRepositoryInterface;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -38,6 +41,12 @@ class AppServiceProvider extends ServiceProvider
 
         // TODO: 検討repositoryの実装クラス集約したrepositoryImpl構造体をusecaseに注入する方が都合がよい? 自在にデータ取得をロジックにかけるようになるから　逆に副作用はあるか??
 
+        // postcode
+        $this->app->bind(PostcodeRepositoryInterface::class, Postcode::class);
+
+        $this->app->bind(PostcodeUsecase::class, function ($app) {
+            return new PostcodeUsecase($app->make(PostcodeRepositoryInterface::class));
+        });
     }
 
     /**
