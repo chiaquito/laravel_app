@@ -72,6 +72,9 @@ class Category
           // 加盟店の顧客は現在サービス提供中のすべてのサービスを利用できるため、
           // すべてのカテゴリを表示する。
           // ただし、在庫管理サービスはサービス受付停止中のため顧客には表示しない
+          if ($this->serviceId === Constant::ServiceInventoryManagement) {
+            return false;
+          }
           if ($this->serviceId === Constant::ServiceIndividual
             || $this->serviceId === Constant::ServiceTrial
             || $this->serviceId === Constant::ServiceFactory
