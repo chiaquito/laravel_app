@@ -2,21 +2,22 @@
 
 namespace App\Usecases\Category;
 use App\Usecases\Category\Output\CategoriesOutput;
-
+    use App\Usecases\Repositories\CategoryRepositoryInterface;
 use App\Models\Category;
+
 
 class CategoryUsecase
 {
-    public function __construct()
+    private CategoryRepositoryInterface $repo;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
-        // Initialize any dependencies or services here
+        $this->repo = $categoryRepository;
     }
 
-    public function categories(): array // CategoryOutput
+    public function categories(): array // array of CategoriesOutput
     {
-
-        $repo = new Category();
-        $categories = $repo->find();
+        $categories = $this->repo->fetchAll();
 
         return array_map(function ($category) {
             return new CategoriesOutput($category->name);
