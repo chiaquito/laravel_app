@@ -22,4 +22,11 @@ class CategoryController
 
         return HttpResponse::toResponse($categories);
     }
+
+    public function categoriesByCustomerType(): JsonResponse
+    {
+        $categories = $this->uc->categoriesByCustomerType();
+
+        return HttpResponse::toResponse($categories);
+    }
 }

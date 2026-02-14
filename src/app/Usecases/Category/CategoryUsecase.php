@@ -21,10 +21,19 @@ class CategoryUsecase
         $filtered = array_filter($categories, function ($category) {
             $domain = new Category($category->id, $category->name, $category->serviceId);
             // TODO: 引数をリクエストによって動的に変更できるようにする
-            return $domain->isDisplayable(1); // 顧客タイプIDが1の場合は全てのカテゴリを表示
+            return $domain->isDisplayable(3); // 顧客タイプIDが1の場合は全てのカテゴリを表示
 
         });
 
         return CategoriesOutput::toOutput($filtered);
+    }
+
+
+    public function categoriesByCustomerType(): array // array of CategoriesOutput
+    {
+        $customerTypeId = 1;
+
+        $categories = $this->repo->fetchByCustomerTypeId($customerTypeId);
+        return CategoriesOutput::toOutput($categories);
     }
 }
