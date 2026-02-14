@@ -9,4 +9,5 @@ Route::get('/sample', [SampleController::class, 'sample']);
 Route::get('/categories', [CategoryController::class, 'categories']);
 Route::get('/categories-by-customer-type', [CategoryController::class, 'categoriesByCustomerType']);
 
+Route::get('/postcodes/{postcode}', [\App\Http\Controllers\Postcode\PostcodeController::class, 'addressByPostcode']);
 Route::get('/postcodes/{postcode}/validity', [\App\Http\Controllers\Postcode\PostcodeController::class, 'validatePostcode']);
