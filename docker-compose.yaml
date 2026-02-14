@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: sample_app
     build:
       context: ./docker/app
       dockerfile: Dockerfile
@@ -8,6 +9,7 @@ services:
     working_dir: /var/www/html
 
   web:
+    container_name: nginx
     image: nginx:1.29.0-alpine # 公式イメージを指定
     ports:
       - 8080:80
@@ -18,11 +20,14 @@ services:
       - app
 
   db:
+    container_name: mysql
     image: mysql:8.0 # 公式イメージを指定
     ports:
       - 3306:3306
     volumes:
       - db-data:/var/lib/mysql
+      - ./docker/db/initdb:/docker-entrypoint-initdb.d
+      - ./docker/db/config/mysql.conf:/etc/mysql/conf.d/my.cnf
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: laravel_db
