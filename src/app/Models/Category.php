@@ -10,6 +10,6 @@ class Category implements CategoryRepositoryInterface
 {
     public function fetchAll(): array
     {
-        return DB::connection('mysql')->select('SELECT * FROM category');
+        return DB::connection('mysql')->select("SELECT id, name, service_id as serviceId FROM category");
     }
 }
