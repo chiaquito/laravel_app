@@ -18,8 +18,6 @@ class CategoryUsecase
     {
         $categories = $this->repo->fetchAll();
 
-        return array_map(function ($category) {
-            return new CategoriesOutput($category->id, $category->name, $category->serviceId);
-        }, $categories);
+        return CategoriesOutput::toOutput($categories);
     }
 }

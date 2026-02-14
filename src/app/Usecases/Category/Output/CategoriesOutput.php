@@ -6,12 +6,17 @@ class CategoriesOutput
 {
     public int $id;
     public string $name;
-    public int $serviceId;
 
-    public function __construct(int $id, string $name, int $serviceId)
+    public function __construct(int $id, string $name)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->serviceId = $serviceId;
+    }
+
+    public static function toOutput(array $categories): array
+    {
+        return array_map(function ($category) {
+            return new CategoriesOutput($category->id, $category->name);
+        }, $categories);
     }
 }
