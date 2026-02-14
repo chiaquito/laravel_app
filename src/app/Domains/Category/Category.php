@@ -26,12 +26,12 @@ class Category
         }
 
         // 顧客がプレミアム登録店の表示可否判定
-        if ($customerTypeId === Constant::CustomerTypePremiumRegister ) { // 例えば、顧客タイプIDが2の場合は特定のカテゴリのみ表示
+        if ($customerTypeId === Constant::CustomerTypePremiumRegister ) {
             return $this->isDisplayableForPremiumRegister();
         }
 
         // 顧客が加盟店の表示可否判定
-        if ($customerTypeId === Constant::CustomerTypeAffiliatedStore ) { // 例えば、顧客タイプIDが3の場合は特定のカテゴリのみ表示
+        if ($customerTypeId === Constant::CustomerTypeAffiliatedStore ) {
             return $this->isDisplayableForAffiliatedStore();
         }
 
