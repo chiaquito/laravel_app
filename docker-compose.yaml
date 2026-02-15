@@ -7,6 +7,10 @@ services:
     volumes:
       - ./src:/var/www/html
     working_dir: /var/www/html
+    environment:
+      ## TODO: I want to inject environment variables reading env file. not want to write them in "docker-compose.yaml" directly 
+      # APP_KEY value does not have important meaning, just for testing
+      - APP_KEY=base64:bptEJNedFS9NMxyx+mVUjGY2M3SvcUT2+/LkGW0X8RY=
 
   web:
     container_name: nginx
