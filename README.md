@@ -21,3 +21,8 @@ curl "localhost:8080/api/categories-by-customer-type?customerTypeId=2"
 curl http://localhost:8080/api/postcodes/9900074/validity
 curl http://localhost:8080/api/postcodes/9900074
 ```
+
+```
+# run unit test
+make test
+```
